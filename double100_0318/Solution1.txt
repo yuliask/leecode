@@ -1,0 +1,32 @@
+class Solution {
+    	int ret=-1,a=0,b=0;
+    	if(money>children*8)return children-1;
+    	if(money==children*8) return children;
+    	int n=children-1;
+    	
+    	a=money/8;b=money%8;
+
+    	while(a>0) {
+    		if(b>=children-a) {
+    			if(children-a>=2)return a;
+    			else if(b==4)return a-1;
+    			else return a;
+    		}else {
+    			a--;b+=8;
+    		}
+    		
+    		
+    	}
+    	
+    	if(a<1) {
+    		if(b>=children-a) {
+    			if(children-a>=2)return a;
+    			else if(b==4)return a-1;
+    			else return a;
+    		}
+
+    	}    			
+    	
+    	
+    	return ret;
+}
