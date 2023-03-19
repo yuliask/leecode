@@ -1,0 +1,25 @@
+    public boolean checkValidGrid(int[][] grid) {
+    	boolean ret=true;
+    	int gg[][]=new int[49][2];
+    	for(int i=0;i<49;i++) {
+    		gg[i]=new int[2];
+    		
+    	}
+    	int vv=0,nn=grid.length;
+    	nn=nn*nn;
+    	for(int i=0;i<grid.length;i++) {
+    		for(int j=0;j<grid.length;j++) {
+    			vv=grid[i][j];
+    			gg[vv][0]=i;
+    			gg[vv][1]=j;
+    			System.out.print(vv+" ");
+    		}
+    		System.out.println();
+    	}
+    	for(int i=1;i<nn;i++) {
+    		vv=(gg[i][0]-gg[i-1][0])*(gg[i][1]-gg[i-1][1]);
+    		if(vv==2||vv==-2)continue;
+    		return false;
+    	}
+    	return ret;
+    }	

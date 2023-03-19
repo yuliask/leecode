@@ -1,0 +1,16 @@
+    public int findSmallestInteger(int[] nums, int value) {
+    	int[] ret=new int[value];
+    	int x=0;
+    	for(int i=0;i<nums.length;i++) {
+    		x=nums[i]%value;
+    		ret[x<0?(x+value):x]++;
+    		
+    		
+    	}
+    	int min=ret[0];
+    	for(int i=1;i<value;i++)if(ret[i]<min)min=ret[i];
+    	for(int i=0;i<value;i++) {
+    		if(ret[i]<min+1)return min*value+i;
+    	}
+    	return nums.length;
+    }	

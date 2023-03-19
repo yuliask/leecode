@@ -1,0 +1,13 @@
+    public int[] evenOddBit(int n) {
+    	int[] ret=new int[2];
+    	String bx=Integer.toBinaryString(n);
+    	System.out.println(bx);
+    	for(int i=bx.length()-1;i>=0;i--) {
+    		if(bx.charAt(i)=='1') {
+    			ret[(bx.length()-1-i)%2]++;
+    			System.out.println("i="+(bx.length()-1-i)+"::ret:"+ret[0]+"xx"+ret[1]);
+    		}
+    	}
+    	
+    	return ret;
+    }
