@@ -1,0 +1,13 @@
+class Solution {
+    public int minNumber(int[] nums1, int[] nums2) {
+        int[] aa=new int[10];
+        for(int a:nums1)aa[a]+=1;
+        for(int a:nums2)aa[a]+=2;
+        for(int i=0;i<10;i++)if(aa[i]==3)return i;
+        int a=0,b=0;
+        for(int i=0;i<10;i++)if(aa[i]==1&&a==0)a=i;
+        else if(aa[i]==2&&b==0)b=i;
+        System.out.println(a+":"+b);
+        return a<b?a*10+b:a+b*10;
+    }
+}
