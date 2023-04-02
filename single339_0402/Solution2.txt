@@ -1,0 +1,20 @@
+class Solution {
+    public List<List<Integer>> findMatrix(int[] nums) {
+        int[] aa=new int[201];
+        int max=0;
+        for(int a:nums){
+            aa[a]++;
+            max=Math.max(max,aa[a]);
+        }
+        
+        List<List<Integer>> ret=new ArrayList<>();
+        for(int j=0;j<max;j++){
+            List<Integer> rr=new ArrayList<>();
+            for(int i=1;i<201;i++)if(aa[i]>0){rr.add(i);aa[i]--;}
+            
+            ret.add(rr);
+        }
+        return ret;
+        
+    }
+}
