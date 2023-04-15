@@ -1,0 +1,55 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public void sum(TreeNode t,int n,ArrayList<Integer> al){
+        Integer ax=0;
+        if(n<al.size())ax=al.get(n);
+        if(t==null){al.set(n,ax);return;}
+        if(n<al.size())al.set(n,ax+t.val);
+        else al.add(ax+t.val);
+        if(t.left!=null)sum(t.left,n+1,al);
+        if(t.right!=null)sum(t.right,n+1,al);
+    }
+    public void sumc(TreeNode t,int n,ArrayList<Integer> al){
+        if(n>=al.size())return;
+        Integer ax=al.get(n);
+        int tx=0;
+        if(t.left!=null)tx+=t.left.val;
+        if(t.right!=null)tx+=t.right.val;
+        tx=ax-tx;
+        if(t.left!=null){t.left.val=tx;}
+        if(t.right!=null){t.right.val=tx;}
+    }
+    public void suma(ArrayList<TreeNode> br,int n,ArrayList<Integer> al){
+        ArrayList<TreeNode> cc=new ArrayList<>();
+        for(TreeNode tx:br){
+        sumc(tx,n,al);
+            if(tx.left!=null)cc.add(tx.left);
+            if(tx.right!=null)cc.add(tx.right);
+        }
+        if(br.size()<1)return;
+        suma(cc,n+1,al);
+    }
+    
+    public TreeNode replaceValueInTree(TreeNode root) {
+        ArrayList<Integer> al=new ArrayList<>();
+        ArrayList<TreeNode> at=new ArrayList<>();
+        sum(root,0,al);
+        at.add(root);root.val=0;
+        suma(at,1,al);
+        return root;
+    }
+}
