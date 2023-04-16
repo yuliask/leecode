@@ -1,0 +1,14 @@
+class Solution {
+    public int maxDivScore(int[] nums, int[] divisors) {
+        int a=divisors[0],b=0;
+        for(int ax:divisors){
+            int tmp=0;
+            for(int bx:nums)if(bx%ax==0)tmp++;
+            if(tmp>b){a=ax;b=tmp;}
+            else if(tmp==b&&a>ax){a=ax;}
+            
+        }
+            
+            return a;
+    }
+}
