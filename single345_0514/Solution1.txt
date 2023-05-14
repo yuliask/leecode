@@ -1,0 +1,23 @@
+class Solution {
+    public int[] circularGameLosers(int n, int k) {
+        int[] xx=new int[n];
+        int zero=n-1;
+        xx[0]=1;
+        int cur=0,turn=1;
+        while(true){
+            if(xx[(cur+k*turn)%n]==1)break;
+            xx[(cur+k*turn)%n]=1;
+            zero--;
+            cur=(cur+k*turn)%n;
+            turn++;
+
+        }
+
+        int[] ret=new int[zero];
+
+        if(zero==0)return ret;
+        int j=0;
+        for(int i=0;i<n;i++)if(xx[i]==0)ret[j++]=i+1;
+        return ret;
+    }
+}
