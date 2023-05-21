@@ -1,0 +1,11 @@
+class Solution {
+    public int minLength(String s) {
+        int n=s.length();
+        String s1=s.replaceAll("AB","").replaceAll("CD","");
+        while(n!=s1.length()){
+            n=s1.length();
+            s1=s1.replaceAll("AB","").replaceAll("CD","");
+        }
+        return n;        
+    }
+}

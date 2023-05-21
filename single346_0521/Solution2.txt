@@ -1,0 +1,14 @@
+class Solution {
+    public String makeSmallestPalindrome(String s) {
+        int n=s.length();
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<n/2;i++)
+            if(s.charAt(i)<=s.charAt(n-1-i))sb.append(s.charAt(i));
+            else sb.append(s.charAt(n-1-i));
+        // System.out.println(sb.toString());
+        // System.out.println(sb.reverse().toString());
+        String f=sb.toString(),f2=sb.reverse().toString();
+        if(n%2==1)return f+s.charAt(n/2)+f2;
+        else return f+f2;
+    }
+}

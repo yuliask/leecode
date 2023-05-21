@@ -1,0 +1,42 @@
+class Solution {
+    public boolean finc(int sum,String str,int start,int cursum){
+        
+        if(start>=str.length()){
+            
+            return cursum==sum;
+        }
+        int a1=Integer.parseInt(str.substring(start,start+1));
+        // System.out.println(sum+":"+str+":"+start+":"+cursum+":"+a1);
+        boolean b1=false;
+        if(cursum+a1<=sum)b1= finc(sum,str,start+1,cursum+a1);
+        if(b1)return true;
+        if(start+2<=str.length()){
+        int a2=Integer.parseInt(str.substring(start,start+2));
+        // System.out.println(sum+":"+str+":"+start+":"+cursum+":"+a2);
+        if(cursum+a2<=sum)b1= finc(sum,str,start+2,cursum+a2);
+        if(b1)return true;
+            
+        }
+        if(start+3<=str.length()){
+        int a3=Integer.parseInt(str.substring(start,start+3));
+        // System.out.println(sum+":"+str+":"+start+":"+cursum+":"+a3);
+        if(cursum+a3==sum)b1= finc(sum,str,start+3,cursum+a3);
+        if(b1)return true;
+        }
+        return b1;
+    }
+    public int punishmentNumber(int n) {
+        int[] num=new int[1001];
+        for(int i=1;i<=n;i++){
+            if(finc(i,i*i+"",0,0))num[i]=i*i;
+        }
+        int sum=0;
+        for(int i=1;i<=n;i++){
+            if(num[i]>0){
+                sum+=num[i];
+            System.out.println(i+":sum:"+num[i]);
+            }
+        }
+        return sum;
+    }
+}
