@@ -1,0 +1,44 @@
+class Solution {
+    
+    public int gcd(int a,int b){
+        if(a==1||b==1)return 1;
+        if(b==0)return a;
+        if(a==0)return b;
+        if(a>b)return gcd(b,a%b);
+        else if(a==b)return b;
+        else return gcd(a,b%a);
+    }
+    public List<Integer> gg(int a){
+        List<Integer> ret=new ArrayList<>();
+        int bend=a/2;
+        for(int i=2;i<bend&&a>0;i++)if(a%i==0){a=a%i;ret.add(i);}
+        return ret;
+    }
+    public boolean gk(int nk,HashSet ab){
+        for( int b in ab)if(nk%b==0)return true;
+        return false;
+    }
+    public boolean canTraverseAllPairs(int[] nums) {
+        HashSet<Integer> cc=new HashSet<>();
+        int ta=nums[0];int n=nums.length;
+        int tmp=1;
+        for(int i=1;i<n;i++){
+            tmp=gcd(ta,nums[i]);
+            if(tmp==1)continue;
+            cc.addAll(gg(tmp));
+            nums[i]=0;
+        }
+        if(cc.size()<1)return false;
+        nums[0]=0;
+
+        tmp=0;
+        while(tmp<n&&nums[tmp]==0)tmp++;
+        if(tmp==n)return true;
+        ta=nums[tmp];
+        if(gk(ta,cc)){
+            cc.addAll(gg(ta));
+            nums[tmp]=0;
+        }else return false;
+        return true;
+    }
+}

@@ -1,0 +1,47 @@
+class Solution {
+    public long maxStrength(int[] nums) {
+        long result=1l;
+        int n=nums.length;
+        if(n==1)return result*nums[0];
+        Arrays.sort(nums);
+        int ab=-1,ae=0,bb=-1,be=-1;
+        boolean flag=false;
+        while(ae<n&&nums[ae]<0)ae++;
+        if(ae==n){
+            for(int i=0;i<n;i++)result*=nums[i];
+            if(n%2==1)result/=nums[n-1];
+            return result;
+        }
+        if(ae==0){
+            be=0;
+            while(be<n&&nums[be]==0)be++;
+            if(be==n){
+                return 0l;
+            }
+            if(be==0){
+                for(int i=0;i<n;i++)result*=nums[i];
+                return result;
+            }
+            for(int i=be;i<n;i++)result*=nums[i];
+            return result;
+        }
+        for(int i=0;i<ae;i++)result*=nums[i];
+        if(ae%2==1)result/=nums[ae-1];
+        if(ae>1)flag=true;
+            be=ae;
+            while(be<n&&nums[be]==0)be++;
+        
+            if(be==n){
+                return flag?result:0l;
+            }
+            if(be==ae){
+                for(int i=be;i<n;i++)result*=nums[i];
+                return result;
+            }
+            for(int i=be;i<n;i++)result*=nums[i];
+            return result;
+        
+        
+        
+    }
+}
