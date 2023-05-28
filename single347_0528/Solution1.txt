@@ -1,0 +1,10 @@
+class Solution {
+    public String removeTrailingZeros(String num) {
+        if(num.length()==1)return num;
+        int sub=num.length()-1;
+        while(sub>0&&num.charAt(sub)=='0')sub--;
+        return num.substring(0,sub+1);
+        
+        
+    }
+}
