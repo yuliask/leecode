@@ -1,0 +1,20 @@
+import java.util.*;
+import java.math.*;
+class Solution {
+    public boolean gn(BigInteger c,int min, int max){
+        String x=c.toString();
+        int total=0;
+        for(int i=0;i<x.length();i++)total+=x.charAt(i)-'0';
+        return total>=min&&total<=max;
+    }
+    public int count(String num1, String num2, int min_sum, int max_sum) {
+        BigInteger a=new BigInteger(num1),b=new BigInteger(num2);
+        BigInteger c=a;
+        BigInteger d=new BigInteger("0");
+        while(c.compareTo(b)<=0){
+            if(gn(c,min_sum,max_sum))d.add(1);
+            c.add(1);
+        }
+        return (int)d.remainder(1000000007);
+    }
+}
