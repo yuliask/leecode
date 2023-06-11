@@ -1,0 +1,51 @@
+class Solution {
+    public String smallestString(String s) {
+        if(s.equals("a"))return "z";
+        String prx="";
+        if(s.startsWith("aa")){
+            int a=0;
+            while(a<s.length()&&s.charAt(a)=='a')a++;
+            System.out.println("we are in block1 and a="+a);
+            if(a>=s.length())return s.substring(0,s.length()-1)+"z";
+            prx=s.substring(0,a-1);
+            s=s.substring(a-1);
+            System.out.println("we are in block1.2 and prx="+prx);
+            
+        }
+        int a1=s.indexOf("a");
+        if(a1==-1){
+            StringBuilder sb=new StringBuilder();
+            for(int i=0;i<s.length();i++)sb.append((char)(s.charAt(i)-1));
+            System.out.println("we are in block2");
+            return prx+sb.toString();
+        }
+        if(a1!=0){
+            StringBuilder sb=new StringBuilder();
+            for(int i=0;i<a1;i++)sb.append((char)(s.charAt(i)-1));
+            sb.append("a");
+            sb.append(s.substring(a1+1));
+            System.out.println("we are in block3");
+            return prx+sb.toString();
+            
+        }
+        int a2=s.indexOf("a",a1+1);
+        if(a2==-1){
+            StringBuilder sb=new StringBuilder();
+            sb.append("a");
+            for(int i=1;i<s.length();i++)sb.append((char)(s.charAt(i)-1));
+            System.out.println("we are in block4");
+            return prx+sb.toString();
+            
+        }else{
+            StringBuilder sb=new StringBuilder();
+            sb.append("a");
+            for(int i=1;i<a2;i++)sb.append((char)(s.charAt(i)-1));
+            sb.append("a");
+            sb.append(s.substring(a2+1));
+            System.out.println("we are in block5");
+            return prx+sb.toString();
+            
+        }
+        
+    }
+}
