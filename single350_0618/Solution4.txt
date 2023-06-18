@@ -1,0 +1,30 @@
+class Solution {
+    public int paintWalls(int[] cost, int[] time) {
+        int total=0,nn=cost.length;
+        int tmp=0;
+        for(int i=0;i<nn-1;i++)
+            for(int j=0;j<nn-1-i;j++){
+                if(cost[j]>cost[j+1]){
+                    tmp=cost[j];cost[j]=cost[j+1];cost[j+1]=tmp;
+                    tmp=time[j];time[j]=time[j+1];time[j+1]=tmp;
+                }else if(cost[j]==cost[j+1]&&time[j]>time[j+1]){
+                    tmp=time[j];time[j]=time[j+1];time[j+1]=tmp;
+                    
+                }
+            }
+        int ttime=0;
+        
+        for(int i=0;i<nn;i++)System.out.print(cost[i]+" ");
+        System.out.println();
+        for(int i=0;i<nn;i++)System.out.print(time[i]+" ");
+        System.out.println();
+        for(int i=0;i<nn;i++){
+            total+=cost[i];
+            ttime+=time[i];
+            System.out.println(i+":"+total+":"+ttime);
+            if(nn-i-1<=ttime)return total;
+        }
+        
+        return total;
+    }
+}

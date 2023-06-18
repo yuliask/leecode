@@ -1,0 +1,25 @@
+class Solution {
+    public int distanceTraveled(int mainTank, int additionalTank) {
+        int mm=mainTank/5,nn=mainTank%5;
+        int total=mainTank;
+        while(mm>0){
+            if(additionalTank>=mm){
+                additionalTank-=mm;
+                total+=mm;
+                mm+=nn;
+            }else{
+                total+=additionalTank;
+                mm=nn+additionalTank;
+                additionalTank=0;
+            } 
+            nn=mm%5;mm/=5;
+            if(additionalTank==0)break;
+        }
+        
+        
+        return total*10;
+        
+        
+        
+    }
+}
