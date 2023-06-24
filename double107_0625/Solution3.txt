@@ -1,0 +1,32 @@
+class Solution {
+    public String con(String st,String end){
+            if(st.charAt(st.length()-1)==end.charAt(0)){
+                return st+end.substring(1);
+            }else return st+end;
+        
+    }
+    public int gk(String[] words,int index,String total,int n){
+        String st="",end="";
+        // System.out.println(index+":"+words[index]);
+        if(index==n-2){
+            st=total;
+            end=words[index+1];
+            if(st.charAt(0)==end.charAt(end.length()-1)||st.charAt(st.length()-1)==end.charAt(0)){
+                return st.length()+end.length()-1;
+            }else return st.length()+end.length();
+        }
+            st=total;
+            end=words[index+1];
+            String ab=con(st,end);
+            String bc=con(end,st);
+        
+            int ax=gk(words,index+1,ab,n);
+            int bx=gk(words,index+1,bc,n);
+        
+            return Math.min(ax,bx);
+        
+    }
+    public int minimizeConcatenatedLength(String[] words) {
+        return gk(words,0,words[0],words.length);
+    }
+}
