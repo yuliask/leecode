@@ -1,0 +1,21 @@
+class Solution {
+    public int longestAlternatingSubarray(int[] nums, int threshold) {
+        int max=0,nn=nums.length;
+        int ind=0;
+        int st=-1,end=-1;
+        
+        while(true){
+        while(ind<nn&&nums[ind]>threshold||ind<nn&&nums[ind]%2==1)ind++;
+        if(ind==nn)return max;
+        st=ind;
+        while(ind<nn-1&&nums[ind+1]<=threshold&&(nums[ind+1]+nums[ind])%2==1)ind++;
+        end=ind;
+        if(max<end-st+1)max=end-st+1;
+        if(end==nn-1)return max;
+        st=-1;end=-1;ind++;
+            
+        }
+        
+        
+    }
+}
