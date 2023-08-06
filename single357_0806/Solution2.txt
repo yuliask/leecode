@@ -1,0 +1,43 @@
+class Solution {
+    
+    public boolean god(List<Integer> nums, int m){
+        if(nums.size()<=2){
+            // System.out.println("lt 2, true");
+            return true;
+        }
+        int n=nums.size();
+
+        int total=0;
+        for(int i=0;i<n-1;i++){
+            total+=nums.get(i);
+            if(total>=m){
+                
+                nums.remove(n-1);
+                // System.out.println("remove rightmost , go on"+nums);
+                
+                return god(nums,m);}
+            
+        }
+        total+=nums.get(n-1)-nums.get(0);
+        if(total<m){
+                // System.out.println(" rightmost less then m , false"+nums);
+            return false;
+        }
+        nums.remove(0);
+                // System.out.println("remove leftmost , go on"+nums);
+        
+        return god(nums,m);
+        
+    }
+    
+    public boolean canSplitArray(List<Integer> nums, int m) {
+        if(nums.size()<=2){
+            // System.out.println("lt 2, true");
+            return true;
+        }
+        int n=nums.size();
+        for(int i=0;i<n-1;i++)if(nums.get(i)+nums.get(i+1)>=m)return true;
+        return false;
+        
+    }
+}
