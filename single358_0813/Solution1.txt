@@ -1,0 +1,30 @@
+class Solution {
+    
+    public int maxu(int a,int b){
+        int ret=-1;
+        int ta=a%10,tb=b%10;
+        int ia=a/10,ib=b/10;
+        while(ia>0){
+            if(ia%10>ta)ta=ia%10;
+            ia/=10;
+        }
+        while(ib>0){
+            if(ib%10>tb)tb=ib%10;
+            ib/=10;
+        }
+        if(ta==tb)ret=a+b;
+        return ret;
+    }
+    
+    public int maxSum(int[] nums) {
+        int total=-1;
+        for(int i=0;i<nums.length;i++)
+            for(int j=0;j<nums.length;j++){
+                if(j==i)continue;
+                int tmp=maxu(nums[i],nums[j]);
+                if(tmp>total)total=tmp;
+            }
+        return total;
+        
+    }
+}
